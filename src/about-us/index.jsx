@@ -54,7 +54,7 @@ function AboutUs() {
             <div className="relative z-10 min-h-screen">
                 {/* Hero Section - No Gradient */}
                 <div className='relative h-[250px] mb-12 flex flex-col items-center justify-center text-white px-4 text-center'>
-                    <h1 className='text-4xl font-bold mb-4'>About TravelEase</h1>
+                    <h1 className='text-4xl font-bold mb-4'>About-TravelEase</h1>
                     <p className='text-xl max-w-2xl'>Your Smart Travel Companion</p>
                 </div>
 
