@@ -108,9 +108,9 @@ HelpLine: 18605001066`
                         ))}
                     </div>
 
-                   
+
                     <div className='grid md:grid-cols-2 gap-8 mt-16'>
-                        
+
                         <div className='bg-white/40 backdrop-blur-lg rounded-lg p-8 shadow-lg border border-white/20 hover:bg-white/50 transition-all duration-300'>
                             <h2 className='text-2xl font-bold mb-6'>We'd Love to Hear From You!</h2>
                             <form onSubmit={handleSubmit} className='space-y-6'>

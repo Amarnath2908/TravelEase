@@ -8,16 +8,16 @@ function Footer() {
                 <div className="flex justify-between items-center">
                     {/* Social Media Icons - Left Side */}
                     <div className="flex gap-6">
-                        <a href="#" className="text-white hover:text-[#f56551] transition-colors">
+                        <a href="https://www.facebook.com/share/1BwLtgR3YT/" className="text-white hover:text-[#f56551] transition-colors">
                             <FaFacebook className="w-6 h-6" />
                         </a>
-                        <a href="#" className="text-white hover:text-[#f56551] transition-colors">
+                        <a href="https://www.instagram.com/amarnath_2908?igsh=MWw4dnNmd3k5aDNnNg==" className="text-white hover:text-[#f56551] transition-colors">
                             <FaInstagram className="w-6 h-6" />
                         </a>
                         <a href="https://x.com/Amarnath200508?t=sPZQDOTaQ4ATyUQ7LNVWLw&s=09" className="text-white hover:text-[#f56551] transition-colors">
                             <FaXTwitter className="w-6 h-6" />
                         </a>
-                        <a href="#" className="text-white hover:text-[#f56551] transition-colors">
+                        <a href="https://www.linkedin.com/in/amar-nath-9262482b9" className="text-white hover:text-[#f56551] transition-colors">
                             <FaLinkedin className="w-6 h-6" />
                         </a>
                     </div>
