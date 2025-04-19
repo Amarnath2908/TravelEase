@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FaBrain, FaChartLine, FaPhoneFlip } from 'react-icons/fa6';
+import { FaPlane, FaChartLine, FaPhoneFlip } from 'react-icons/fa6';
 import emailjs from '@emailjs/browser';
 import { toast } from 'sonner';
+import { sendAutoReplyEmail } from './emailUtils';
 
 function AboutUs() {
     // Get user email from localStorage if user is logged in
@@ -29,6 +30,7 @@ function AboutUs() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // Send feedback to admin
             await emailjs.send(
                 "service_lfyjstr",
                 "template_i9k8b8q",
@@ -39,8 +41,16 @@ function AboutUs() {
                     type: feedback.type
                 }
             );
-            toast.success('Thank you for your feedback!');
-            setFeedback(prev => ({ ...prev, name: '', message: '', type: 'feedback' })); // Keep email if user is logged in
+
+            // Send auto-reply email to user
+            await sendAutoReplyEmail({
+                name: feedback.name,
+                email: feedback.email,
+                type: feedback.type
+            });
+
+            toast.success('Thank you for your feedback! A confirmation has been sent to your email.');
+            setFeedback(prev => ({ ...prev, name: '', message: '', type: 'feedback' }));
         } catch (error) {
             console.error('Error sending email:', error);
             toast.error('Failed to send feedback. Please try again.');
@@ -54,7 +64,7 @@ function AboutUs() {
             <div className="relative z-10 min-h-screen">
                 {/* Hero Section - No Gradient */}
                 <div className='relative h-[250px] mb-12 flex flex-col items-center justify-center text-white px-4 text-center'>
-                    <h1 className='text-4xl font-bold mb-4'>About-TravelEase</h1>
+                    <h1 className='text-4xl font-bold mb-4'>About TravelEase</h1>
                     <p className='text-xl max-w-2xl'>Your Smart Travel Companion</p>
                 </div>
 
@@ -64,7 +74,7 @@ function AboutUs() {
                     <div className='grid md:grid-cols-3 gap-8 mb-12'>
                         {[
                             {
-                                icon: <FaBrain className="w-8 h-8 text-blue-500 mb-4" />,
+                                icon: <FaPlane className="w-8 h-8 text-blue-500 mb-4" />,
                                 title: 'Why TravelEase?',
                                 text: `TravelEase, launched in 2024, uses AI to make travel planning effortless.
 We craft trips to your style and budget.
@@ -98,9 +108,9 @@ HelpLine: 18605001066`
                         ))}
                     </div>
 
-                    {/* Two Column Layout */}
+                   
                     <div className='grid md:grid-cols-2 gap-8 mt-16'>
-                        {/* Feedback Form */}
+                        
                         <div className='bg-white/40 backdrop-blur-lg rounded-lg p-8 shadow-lg border border-white/20 hover:bg-white/50 transition-all duration-300'>
                             <h2 className='text-2xl font-bold mb-6'>We'd Love to Hear From You!</h2>
                             <form onSubmit={handleSubmit} className='space-y-6'>
@@ -119,7 +129,8 @@ HelpLine: 18605001066`
                                     <input
                                         type="email"
                                         required
-                                        className='w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-purple-500 focus:border-transparent'
+                                        readOnly={!!user}
+                                        className={`w-full px-4 py-2 border rounded-md ${user ? 'bg-gray-100 cursor-not-allowed' : 'focus:ring-2 focus:ring-purple-500 focus:border-transparent'}`}
                                         value={feedback.email}
                                         onChange={(e) => setFeedback({ ...feedback, email: e.target.value })}
                                     />
